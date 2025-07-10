@@ -1,0 +1,120 @@
+# Rust build artifacts
+/target/
+/Cargo.lock
+**/*.rs.bk
+*.pdb
+
+# Generated HTML files and output
+/output/
+*.html
+!templates/*.html
+
+# Torchlight cache and configuration
+/cache/
+torchlight.config.js
+.torchlight-cache/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.development
+.env.test
+.env.production
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.atom/
+.brackets.json
+
+# Operating System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+
+# Logs and debugging
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+debug.log
+error.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and testing
+coverage/
+.nyc_output/
+.coverage
+*.lcov
+
+# Temporary files and directories
+*.tmp
+*.temp
+/temp/
+/tmp/
+.cache/
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+
+# Archive files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# User-generated data
+users.json
+*.db
+*.sqlite
+*.sqlite3
+
+# Documentation build
+/docs/build/
+/docs/_build/
+
+# Package manager
+.npm/
+.yarn/
+node_modules/
+
+# Security
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Custom application data
+/data/
+/uploads/
+/downloads/

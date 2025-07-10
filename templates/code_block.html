@@ -1,0 +1,178 @@
+<!-- Universal Code Block - {filename} -->
+<style>
+    *, :after, :before, ::backdrop {
+        box-sizing: border-box;
+        border: 0 solid;
+        margin: 0;
+        padding: 0;
+    }
+
+    pre {
+        display: block;
+        font-family: monospace;
+        unicode-bidi: isolate;
+        white-space: pre;
+        margin-inline: 0px;
+    }
+
+    .line-number {
+        margin-right: 1rem;
+    }
+</style>
+<div style="
+    font-family: 'Geist Mono', monospace;
+    background-color: #e9e8e6;
+    border-radius: 18px;
+    padding: .5rem;
+    box-shadow: 0px 0px 0px 1px #C8C7C180;
+">
+    <div style="
+        background-color: #111110;
+        border-radius: 10px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    ">
+        <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 1.25rem;
+            font-size: .875rem;
+            color: #fdfdfc;
+            white-space: nowrap;
+        ">
+            <ul style="
+                list-style: none;
+                min-height: 43px;
+                display: flex;
+                padding-inline: 1.25rem;
+                unicode-bidi: isolate;
+            ">
+                <li>
+                    <button style="
+                        font: inherit;
+                        font-feature-settings: inherit;
+                        font-variation-settings: inherit;
+                        letter-spacing: inherit;
+                        color: inherit;
+                        background-color: #0000;
+                        border-radius: 0;
+                        appearance: button;
+                        padding-block: .625rem;
+                        border-bottom-style: solid;
+                        border-color: #fff;
+                        border-bottom-width: 2px;
+                        line-height: 1.5;
+                    ">
+                        {filename}
+                    </button>
+                </li>
+            </ul>
+
+            <button
+                onclick="copyTorchlightCode(this)"
+                style="
+                    font: inherit;
+                    font-feature-settings: inherit;
+                    font-variation-settings: inherit;
+                    letter-spacing: inherit;
+                    color: inherit;
+                    background-color: #0000;
+                    border-radius: .375rem;
+                    background: #4b5563;
+                    border: none;
+                    padding: 6px 12px;
+                    cursor: pointer;
+                    font-size: 12px;
+                    transition: background-color 0.2s;"
+                onmouseover="this.style.background='#6b7280'"
+                onmouseout="this.style.background='#4b5563'"
+                title="Copy code"
+            >
+                Copy
+            </button>
+        </div>
+
+        <div style="
+            padding-bottom: .25rem;
+            padding-inline: .25rem;
+        ">
+            <div style="
+                background-color: #2a2a28;
+                padding-block: 1.5rem;
+                padding-inline: 1.25rem;
+                overflow-x: auto;
+                border-style: solid;
+                border-width: 1px;
+                border-radius: .375rem;
+                border-color: #62605b40;
+            ">
+                <pre style="display: flex; background-color: transparent !important;">
+                    <code
+                        data-theme="{theme}"
+                        data-lang="{language}"
+                        class="torchlight"
+                    >
+                        {code}
+                    </code>
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function copyTorchlightCode(button) {{
+        // Get the code block container
+        const codeBlock = button.closest('div').parentNode;
+        const codeElement = codeBlock.querySelector('code');
+        let code = '';
+        
+        // Try to get code from .line elements first (for better line number filtering)
+        const lines = codeElement.querySelectorAll('.line');
+        
+        if (lines.length > 0) {{
+            // If we have line elements, extract code without line numbers
+            lines.forEach(line => {{
+                const clonedLine = line.cloneNode(true);
+                const lineNumberSpan = clonedLine.querySelector('.line-number');
+                if (lineNumberSpan) {{
+                    lineNumberSpan.remove();
+                }}
+                const codeText = clonedLine.textContent || clonedLine.innerText;
+                code += codeText + '\n';
+            }});
+        }} else {{
+            // Fallback to getting all code content
+            code = codeElement.textContent || codeElement.innerText;
+            
+            // Remove line numbers if they exist (pattern: number followed by spaces)
+            code = code.replace(/^\s*\d+\s+/gm, '');
+        }}
+        
+        navigator.clipboard.writeText(code.trim()).then(() => {{
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {{
+                button.textContent = originalText;
+            }}, 2000);
+        }}).catch(() => {{
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = code.trim();
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const originalText = button.textContent;
+            button.textContent = 'Copied!';
+            setTimeout(() => {{
+                button.textContent = originalText;
+            }}, 2000);
+        }});
+    }}
+</script>
+<!-- End Universal Code Block -->
