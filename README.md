@@ -1,5 +1,7 @@
 # 🦀 Rust Universal Code to HTML Converter
 
+[![Testing](https://github.com/riyuatarashi/code-to-html/actions/workflows/ci.yml/badge.svg)](https://github.com/riyuatarashi/code-to-html/actions/workflows/ci.yml)
+
 A high-performance Rust implementation of a universal code to HTML converter using the Torchlight API for professional syntax highlighting.
 
 ## 🚀 Features
