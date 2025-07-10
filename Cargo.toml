@@ -1,5 +1,5 @@
 [package]
-name = "rust-code-converter"
+name = "code-to-HTML"
 version = "0.1.0"
 edition = "2021"
 description = "Universal Code to HTML Converter using Torchlight API"
